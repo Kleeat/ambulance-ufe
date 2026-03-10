@@ -6,24 +6,98 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface KleeatAmbulanceWlApp {
+        /**
+          * @default ""
+         */
+        "basePath": string;
+    }
+    interface KleeatAmbulanceWlEditor {
+        "entryId": string;
+    }
     interface KleeatAmbulanceWlList {
     }
 }
+export interface KleeatAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLKleeatAmbulanceWlEditorElement;
+}
+export interface KleeatAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLKleeatAmbulanceWlListElement;
+}
 declare global {
+    interface HTMLKleeatAmbulanceWlAppElement extends Components.KleeatAmbulanceWlApp, HTMLStencilElement {
+    }
+    var HTMLKleeatAmbulanceWlAppElement: {
+        prototype: HTMLKleeatAmbulanceWlAppElement;
+        new (): HTMLKleeatAmbulanceWlAppElement;
+    };
+    interface HTMLKleeatAmbulanceWlEditorElementEventMap {
+        "editor-closed": string;
+    }
+    interface HTMLKleeatAmbulanceWlEditorElement extends Components.KleeatAmbulanceWlEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLKleeatAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLKleeatAmbulanceWlEditorElement, ev: KleeatAmbulanceWlEditorCustomEvent<HTMLKleeatAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLKleeatAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLKleeatAmbulanceWlEditorElement, ev: KleeatAmbulanceWlEditorCustomEvent<HTMLKleeatAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLKleeatAmbulanceWlEditorElement: {
+        prototype: HTMLKleeatAmbulanceWlEditorElement;
+        new (): HTMLKleeatAmbulanceWlEditorElement;
+    };
+    interface HTMLKleeatAmbulanceWlListElementEventMap {
+        "entry-clicked": string;
+    }
     interface HTMLKleeatAmbulanceWlListElement extends Components.KleeatAmbulanceWlList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLKleeatAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLKleeatAmbulanceWlListElement, ev: KleeatAmbulanceWlListCustomEvent<HTMLKleeatAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLKleeatAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLKleeatAmbulanceWlListElement, ev: KleeatAmbulanceWlListCustomEvent<HTMLKleeatAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLKleeatAmbulanceWlListElement: {
         prototype: HTMLKleeatAmbulanceWlListElement;
         new (): HTMLKleeatAmbulanceWlListElement;
     };
     interface HTMLElementTagNameMap {
+        "kleeat-ambulance-wl-app": HTMLKleeatAmbulanceWlAppElement;
+        "kleeat-ambulance-wl-editor": HTMLKleeatAmbulanceWlEditorElement;
         "kleeat-ambulance-wl-list": HTMLKleeatAmbulanceWlListElement;
     }
 }
 declare namespace LocalJSX {
-    interface KleeatAmbulanceWlList {
+    interface KleeatAmbulanceWlApp {
+        /**
+          * @default ""
+         */
+        "basePath"?: string;
     }
+    interface KleeatAmbulanceWlEditor {
+        "entryId"?: string;
+        "onEditor-closed"?: (event: KleeatAmbulanceWlEditorCustomEvent<string>) => void;
+    }
+    interface KleeatAmbulanceWlList {
+        "onEntry-clicked"?: (event: KleeatAmbulanceWlListCustomEvent<string>) => void;
+    }
+
+    interface KleeatAmbulanceWlAppAttributes {
+        "basePath": string;
+    }
+    interface KleeatAmbulanceWlEditorAttributes {
+        "entryId": string;
+    }
+
     interface IntrinsicElements {
+        "kleeat-ambulance-wl-app": Omit<KleeatAmbulanceWlApp, keyof KleeatAmbulanceWlAppAttributes> & { [K in keyof KleeatAmbulanceWlApp & keyof KleeatAmbulanceWlAppAttributes]?: KleeatAmbulanceWlApp[K] } & { [K in keyof KleeatAmbulanceWlApp & keyof KleeatAmbulanceWlAppAttributes as `attr:${K}`]?: KleeatAmbulanceWlAppAttributes[K] } & { [K in keyof KleeatAmbulanceWlApp & keyof KleeatAmbulanceWlAppAttributes as `prop:${K}`]?: KleeatAmbulanceWlApp[K] };
+        "kleeat-ambulance-wl-editor": Omit<KleeatAmbulanceWlEditor, keyof KleeatAmbulanceWlEditorAttributes> & { [K in keyof KleeatAmbulanceWlEditor & keyof KleeatAmbulanceWlEditorAttributes]?: KleeatAmbulanceWlEditor[K] } & { [K in keyof KleeatAmbulanceWlEditor & keyof KleeatAmbulanceWlEditorAttributes as `attr:${K}`]?: KleeatAmbulanceWlEditorAttributes[K] } & { [K in keyof KleeatAmbulanceWlEditor & keyof KleeatAmbulanceWlEditorAttributes as `prop:${K}`]?: KleeatAmbulanceWlEditor[K] };
         "kleeat-ambulance-wl-list": KleeatAmbulanceWlList;
     }
 }
@@ -31,6 +105,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "kleeat-ambulance-wl-app": LocalJSX.IntrinsicElements["kleeat-ambulance-wl-app"] & JSXBase.HTMLAttributes<HTMLKleeatAmbulanceWlAppElement>;
+            "kleeat-ambulance-wl-editor": LocalJSX.IntrinsicElements["kleeat-ambulance-wl-editor"] & JSXBase.HTMLAttributes<HTMLKleeatAmbulanceWlEditorElement>;
             "kleeat-ambulance-wl-list": LocalJSX.IntrinsicElements["kleeat-ambulance-wl-list"] & JSXBase.HTMLAttributes<HTMLKleeatAmbulanceWlListElement>;
         }
     }
