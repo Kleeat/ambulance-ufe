@@ -7,6 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface KleeatAmbulanceWlApp {
+        "ambulanceId": string;
+        "apiBase": string;
         /**
           * @default ""
          */
@@ -16,6 +18,8 @@ export namespace Components {
         "entryId": string;
     }
     interface KleeatAmbulanceWlList {
+        "ambulanceId": string;
+        "apiBase": string;
     }
 }
 export interface KleeatAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
@@ -75,6 +79,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface KleeatAmbulanceWlApp {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         /**
           * @default ""
          */
@@ -85,20 +91,28 @@ declare namespace LocalJSX {
         "onEditor-closed"?: (event: KleeatAmbulanceWlEditorCustomEvent<string>) => void;
     }
     interface KleeatAmbulanceWlList {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         "onEntry-clicked"?: (event: KleeatAmbulanceWlListCustomEvent<string>) => void;
     }
 
     interface KleeatAmbulanceWlAppAttributes {
         "basePath": string;
+        "apiBase": string;
+        "ambulanceId": string;
     }
     interface KleeatAmbulanceWlEditorAttributes {
         "entryId": string;
+    }
+    interface KleeatAmbulanceWlListAttributes {
+        "apiBase": string;
+        "ambulanceId": string;
     }
 
     interface IntrinsicElements {
         "kleeat-ambulance-wl-app": Omit<KleeatAmbulanceWlApp, keyof KleeatAmbulanceWlAppAttributes> & { [K in keyof KleeatAmbulanceWlApp & keyof KleeatAmbulanceWlAppAttributes]?: KleeatAmbulanceWlApp[K] } & { [K in keyof KleeatAmbulanceWlApp & keyof KleeatAmbulanceWlAppAttributes as `attr:${K}`]?: KleeatAmbulanceWlAppAttributes[K] } & { [K in keyof KleeatAmbulanceWlApp & keyof KleeatAmbulanceWlAppAttributes as `prop:${K}`]?: KleeatAmbulanceWlApp[K] };
         "kleeat-ambulance-wl-editor": Omit<KleeatAmbulanceWlEditor, keyof KleeatAmbulanceWlEditorAttributes> & { [K in keyof KleeatAmbulanceWlEditor & keyof KleeatAmbulanceWlEditorAttributes]?: KleeatAmbulanceWlEditor[K] } & { [K in keyof KleeatAmbulanceWlEditor & keyof KleeatAmbulanceWlEditorAttributes as `attr:${K}`]?: KleeatAmbulanceWlEditorAttributes[K] } & { [K in keyof KleeatAmbulanceWlEditor & keyof KleeatAmbulanceWlEditorAttributes as `prop:${K}`]?: KleeatAmbulanceWlEditor[K] };
-        "kleeat-ambulance-wl-list": KleeatAmbulanceWlList;
+        "kleeat-ambulance-wl-list": Omit<KleeatAmbulanceWlList, keyof KleeatAmbulanceWlListAttributes> & { [K in keyof KleeatAmbulanceWlList & keyof KleeatAmbulanceWlListAttributes]?: KleeatAmbulanceWlList[K] } & { [K in keyof KleeatAmbulanceWlList & keyof KleeatAmbulanceWlListAttributes as `attr:${K}`]?: KleeatAmbulanceWlListAttributes[K] } & { [K in keyof KleeatAmbulanceWlList & keyof KleeatAmbulanceWlListAttributes as `prop:${K}`]?: KleeatAmbulanceWlList[K] };
     }
 }
 export { LocalJSX as JSX };
