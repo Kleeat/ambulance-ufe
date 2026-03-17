@@ -37,6 +37,8 @@ export class KleeatAmbulanceWlApp {
   }
 
   render() {
+  console.debug("kleeat-ambulance-wl-app.render() - path: %s", this.relativePath);
+
   let element = "list"
   let entryId = "@new"
 

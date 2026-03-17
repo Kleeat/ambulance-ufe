@@ -59,6 +59,7 @@ export class KleeatAmbulanceWlEditor {
         waitingSince: new Date(Date.now()),
         estimatedDurationMinutes: 15
       };
+      this.entry.estimatedStart = await this.assumedEntryDateAsync();
       return this.entry;
     }
     if ( !this.entryId ) {
@@ -85,6 +86,29 @@ export class KleeatAmbulanceWlEditor {
     }
     return undefined;
   }
+
+  private async assumedEntryDateAsync(): Promise<Date> {
+  try {
+    const configuration = new Configuration({
+      basePath: this.apiBase,
+    });
+
+    const waitingListApi = new AmbulanceWaitingListApi(configuration);
+    const response = await waitingListApi.getWaitingListEntriesRaw({ambulanceId: this.ambulanceId})
+    if (response.raw.status > 299) {
+      return new Date();
+    }
+    const lastPatientOut = (await response.value())
+      .map((_: WaitingListEntry) =>
+          _.estimatedStart.getTime()
+          + _.estimatedDurationMinutes * 60 * 1000
+      )
+      .reduce((acc: number, value: number) => Math.max(acc, value), 0);
+    return new Date(Math.min(Date.now(), lastPatientOut));
+  } catch (err: any) {
+    return new Date();
+  }
+}
 
   private handleSliderInput(event: Event) {
     this.duration = +(event.target as HTMLInputElement).value;
@@ -118,8 +142,13 @@ render() {
           </md-filled-text-field>
 
           <md-filled-text-field label="Čakáte od" disabled
-            value={this.entry?.waitingSince}>
+            value={new Date(this.entry?.waitingSince || Date.now()).toLocaleTimeString()}>
             <md-icon slot="leading-icon">watch_later</md-icon>
+          </md-filled-text-field>
+          <md-filled-text-field disabled
+                label="Predpokladaný čas vyšetrenia"
+                value={new Date(this.entry?.estimatedStart || Date.now()).toLocaleTimeString()}>
+                <md-icon slot="leading-icon">login</md-icon>
           </md-filled-text-field>
 
           {this.renderConditions()}
