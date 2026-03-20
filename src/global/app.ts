@@ -15,5 +15,4 @@ import '@material/web/iconbutton/filled-icon-button'
 export default function() { // or export default async function()
   // package initialization code
   registerNavigationApi()
-  // Test Comment
 }
